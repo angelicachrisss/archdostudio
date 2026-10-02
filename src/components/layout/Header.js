@@ -1,44 +1,28 @@
-import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { AppBar, Toolbar, Container, Box, Button, Menu, MenuItem, Typography } from '@mui/material';
-import { display } from '@/theme/theme';
+import { Box, Typography } from '@mui/material';
+import { gutter } from '@/theme/theme';
 import { site } from '@/data/site';
 
 export default function Header() {
-  const [anchor, setAnchor] = useState(null);
   const { pathname } = useRouter();
-  const active = (href) => pathname.startsWith(href);
+  const home = pathname === '/';
+  const on = (href) => pathname.startsWith(href);
 
   return (
-    <AppBar position="sticky" elevation={0} color="transparent"
-      sx={{ bgcolor: 'rgba(243,239,232,0.88)', backdropFilter: 'blur(10px)', borderBottom: '1px solid', borderColor: 'background.paper' }}>
-      <Container maxWidth="lg">
-        <Toolbar disableGutters sx={{ justifyContent: 'space-between', minHeight: 72 }}>
-          <Typography component={Link} href="/" sx={{ fontFamily: display.style.fontFamily, fontSize: '1.6rem', color: 'text.primary', textDecoration: 'none' }}>
-            {site.name}
+    <Box component="header" sx={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 10, height: 72, ...gutter, display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+      color: home ? '#fff' : 'text.primary', bgcolor: home ? 'transparent' : 'background.default' }}>
+      <Typography component={Link} href="/" sx={{ fontWeight: 500, fontSize: '0.95rem', letterSpacing: '0.02em', color: 'inherit', textDecoration: 'none' }}>
+        {site.name}
+      </Typography>
+      <Box component="nav" aria-label="Menu utama" sx={{ display: 'flex', gap: { xs: 2.5, md: 5 } }}>
+        {site.nav.map((l) => (
+          <Typography key={l.href} variant="caption" component={Link} href={l.href} aria-current={on(l.href) ? 'page' : undefined}
+            sx={{ color: 'inherit', textDecoration: 'none', pb: 0.25, borderBottom: '1px solid', borderColor: on(l.href) ? 'currentColor' : 'transparent', '&:hover': { borderColor: 'currentColor' } }}>
+            {l.label}
           </Typography>
-
-          <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 4 }}>
-            {site.nav.map((l) => (
-              <Typography key={l.href} component={Link} href={l.href}
-                sx={{ color: active(l.href) ? 'primary.main' : 'text.primary', textDecoration: active(l.href) ? 'underline' : 'none', textUnderlineOffset: 6,
-                  '&:hover, &:focus-visible': { color: 'primary.main', textDecoration: 'underline' } }}>
-                {l.label}
-              </Typography>
-            ))}
-          </Box>
-
-          <Box sx={{ display: { xs: 'block', md: 'none' } }}>
-            <Button color="inherit" onClick={(e) => setAnchor(e.currentTarget)}>Menu</Button>
-            <Menu anchorEl={anchor} open={Boolean(anchor)} onClose={() => setAnchor(null)}>
-              {site.nav.map((l) => (
-                <MenuItem key={l.href} component={Link} href={l.href} onClick={() => setAnchor(null)}>{l.label}</MenuItem>
-              ))}
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
+        ))}
+      </Box>
+    </Box>
   );
 }

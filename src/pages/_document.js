@@ -6,6 +6,7 @@ export default function MyDocument(props) {
     <Html lang="id">
       <Head>
         <DocumentHeadTags {...props} />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
       </Head>
       <body>
         <Main />
