@@ -6,7 +6,7 @@ export const site = {
   phone: '+62 822 1196 1871',
   instagram: 'archdo.studio',
   linktree: 'https://linktr.ee/archdo.studio',
-  address: ['Maggiore Junction Blok R-15 Lt. 2, Gading Serpong', 'Pagedangan, Kab. Tangerang'],
+  address: ['Villa Melati Mas Blok H2/12, Serpong Utara, Tangerang Selatan, Banten, Indonesia'],
   nav: [
     { label: 'Karya', href: '/projects' },
     { label: 'Studio', href: '/about' },

@@ -1,16 +1,25 @@
-import Head from 'next/head';
-import Link from 'next/link';
-import { Box, Typography } from '@mui/material';
-import { gutter } from '@/theme/theme';
-import { site } from '@/data/site';
-import { projects } from '@/data/projects';
-import Carousel from '@/components/sections/Carousel';
-import MetaList from '@/components/sections/MetaList';
+import Head from "next/head";
+import Link from "next/link";
+import { Box, Typography } from "@mui/material";
+import { gutter } from "@/theme/theme";
+import { site } from "@/data/site";
+import { projects } from "@/data/projects";
+import Carousel from "@/components/sections/Carousel";
+import MetaList from "@/components/sections/MetaList";
 
-export const getStaticPaths = () => ({ paths: projects.map((p) => ({ params: { slug: p.slug } })), fallback: false });
-export const getStaticProps = ({ params }) => ({ props: { slug: params.slug } });
+export const getStaticPaths = () => ({
+  paths: projects.map((p) => ({ params: { slug: p.slug } })),
+  fallback: false,
+});
+export const getStaticProps = ({ params }) => ({
+  props: { slug: params.slug },
+});
 
-const nav = { color: 'inherit', textDecoration: 'none', '&:hover .name': { textDecoration: 'underline' } };
+const nav = {
+  color: "inherit",
+  textDecoration: "none",
+  "&:hover .name": { textDecoration: "underline" },
+};
 
 export default function ProjectDetail({ slug }) {
   const i = projects.findIndex((p) => p.slug === slug);
@@ -22,30 +31,105 @@ export default function ProjectDetail({ slug }) {
   return (
     <>
       <Head>
-        <title>{p.name} | {site.name}</title>
-        {p.description && <meta name="description" content={p.description.split('. ')[0] + '.'} />}
+        <title>
+          {p.name} | {site.name}
+        </title>
+        {p.description && (
+          <meta
+            name="description"
+            content={p.description.split(". ")[0] + "."}
+          />
+        )}
       </Head>
       <Box sx={gutter}>
-        <Typography variant="caption" component={Link} href="/projects" sx={{ color: 'text.secondary', textDecoration: 'none', '&:hover': { color: 'text.primary' } }}>← Karya</Typography>
-        <Typography variant="h1" component="h1" sx={{ mt: 2, mb: 4 }}>{p.name}</Typography>
+        <Typography
+          variant="caption"
+          component={Link}
+          href="/projects"
+          sx={{
+            color: "text.secondary",
+            textDecoration: "none",
+            "&:hover": { color: "text.primary" },
+          }}
+        >
+          ← Karya
+        </Typography>
+        <Typography variant="h1" component="h1" sx={{ mt: 2, mb: 4 }}>
+          {p.name}
+        </Typography>
 
         <Carousel images={images} name={p.name} />
 
-        <Box sx={{ display: 'grid', gap: { xs: 6, md: 12 }, gridTemplateColumns: { xs: '1fr', md: '3fr 2fr' }, mt: { xs: 8, md: 12 } }}>
-          <Typography sx={{ maxWidth: 620, color: p.description ? 'text.primary' : 'text.secondary' }}>
-            {p.description || 'Deskripsi proyek ini akan segera ditambahkan.'}
-          </Typography>
-          <MetaList rows={[['Location', p.location], ['Design Year', p.designYear], ['Construction Period', p.constructionPeriod]]} />
+        <Box
+          sx={{
+            display: "grid",
+            gap: { xs: 6, md: 12 },
+            gridTemplateColumns: { xs: "1fr", md: "3fr 2fr" },
+            mt: { xs: 8, md: 12 },
+          }}
+        >
+          <Box sx={{ maxWidth: 620 }}>
+            {p.description ? (
+              p.description
+                .split(/\n\s*\n/) // pisah di setiap baris kosong
+                .map((para, n) => (
+                  <Typography key={n} sx={{ mb: 3, "&:last-child": { mb: 0 } }}>
+                    {para.trim().replace(/\bm2\b/gi, "m²")}
+                  </Typography>
+                ))
+            ) : (
+              <Typography color="text.secondary">
+                Deskripsi proyek ini akan segera ditambahkan.
+              </Typography>
+            )}
+          </Box>
+          <MetaList
+            rows={[
+              ["Location", p.location],
+              ["GFA", p.GFA],
+              ["Project Year", p.projectYear],
+            ]}
+          />
         </Box>
 
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 3, mt: { xs: 10, md: 16 }, pt: 3, borderTop: '1px solid', borderColor: 'divider' }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            gap: 3,
+            mt: { xs: 10, md: 16 },
+            pt: 3,
+            borderTop: "1px solid",
+            borderColor: "divider",
+          }}
+        >
           <Box component={Link} href={`/projects/${prev.slug}`} sx={nav}>
-            <Typography variant="caption" color="text.secondary" display="block">← Sebelumnya</Typography>
-            <Typography className="name" variant="body2">{prev.name}</Typography>
+            <Typography
+              variant="caption"
+              color="text.secondary"
+              display="block"
+            >
+              ← Sebelumnya
+            </Typography>
+            <Typography className="name" variant="body2">
+              {prev.name}
+            </Typography>
           </Box>
-          <Box component={Link} href={`/projects/${next.slug}`} sx={{ ...nav, textAlign: 'right' }}>
-            <Typography variant="caption" color="text.secondary" display="block">Berikutnya →</Typography>
-            <Typography className="name" variant="body2">{next.name}</Typography>
+          <Box
+            component={Link}
+            href={`/projects/${next.slug}`}
+            sx={{ ...nav, textAlign: "right" }}
+          >
+            <Typography
+              variant="caption"
+              color="text.secondary"
+              display="block"
+            >
+              Berikutnya →
+            </Typography>
+            <Typography className="name" variant="body2">
+              {next.name}
+            </Typography>
           </Box>
         </Box>
       </Box>
