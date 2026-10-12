@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { AppCacheProvider } from '@mui/material-nextjs/v14-pagesRouter';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import theme from '@/theme/theme';
 import Layout from '@/components/layout/Layout';
 
@@ -16,6 +17,7 @@ export default function App(props) {
         <Layout>
           <Component {...pageProps} />
         </Layout>
+        <SpeedInsights />
       </ThemeProvider>
     </AppCacheProvider>
   );
