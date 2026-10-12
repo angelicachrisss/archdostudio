@@ -43,16 +43,9 @@ export default function Studio() {
         </Box>
       </Box>
 
-      {/* Foto tim: panorama, tampil utuh */}
+      {/* Foto tim: panorama, selalu selebar layar dan tampil utuh */}
       <Box
-        sx={{
-          overflowX: { xs: "auto", md: "visible" },
-          "& img": {
-            display: "block",
-            width: { xs: "auto", md: "100%" },
-            height: { xs: 220, md: "auto" },
-          },
-        }}
+        sx={{ "& img": { display: "block", width: "100%", height: "auto" } }}
       >
         <Image
           src={teamPhoto}
@@ -60,7 +53,7 @@ export default function Studio() {
           width={1280}
           height={262}
           priority
-          sizes="(min-width: 900px) 100vw, 1076px"
+          sizes="100vw"
         />
       </Box>
       <Box
