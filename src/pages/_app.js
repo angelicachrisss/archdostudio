@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { AppCacheProvider } from '@mui/material-nextjs/v14-pagesRouter';
+import { Analytics } from '@vercel/analytics/next';
 import theme from '@/theme/theme';
 import Layout from '@/components/layout/Layout';
 
@@ -17,6 +18,7 @@ export default function App(props) {
           <Component {...pageProps} />
         </Layout>
       </ThemeProvider>
+      <Analytics />
     </AppCacheProvider>
   );
 }
