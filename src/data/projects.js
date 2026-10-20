@@ -538,9 +538,14 @@ const isUrl = (f) => /^https?:\/\//.test(f) || f.startsWith("/");
 const inFolder = (slug) => (f) =>
   isUrl(f) ? f : `/images/projects/${slug}/${f}`;
 
-export const projects = raw.map((p) => ({
-  ...p,
-  cover: inFolder(p.slug)(p.cover),
-  description: p.description.trim(),
-  gallery: p.gallery.map(inFolder(p.slug)),
-}));
+// Urutan: tahun terbaru dulu. Proyek tanpa tahun ada di paling akhir.
+const yearOf = (p) => parseInt(p.projectYear, 10) || 0;
+
+export const projects = raw
+  .map((p) => ({
+    ...p,
+    cover: inFolder(p.slug)(p.cover),
+    description: p.description.trim(),
+    gallery: p.gallery.map(inFolder(p.slug)),
+  }))
+  .sort((a, b) => yearOf(b) - yearOf(a));
