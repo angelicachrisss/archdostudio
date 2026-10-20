@@ -173,7 +173,6 @@ const raw = [
 Hunian ini memiliki konsep tropis futuristik dengan pendekatan khas desain tropis; bukaan besar yang ternaungi, ventilasi silang, dilengkapi dengan banyaknya perbedaan level lantai sehingga menciptakan pengalaman ruang yang dinamis dan eksploratif bagi penghuninya.`,
     gallery: [
       // '01.jpg',
-      // '02.jpg',
     ],
   },
   {
