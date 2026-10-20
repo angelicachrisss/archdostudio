@@ -194,11 +194,11 @@ Area rooftop adalah area yang dikhususkan untuk hewan-hewan peliharaan Mr. W, ya
 `,
     gallery: [
       "/images/w_home/Modern Three-Story House with BMW and Greenery.png",
-      "/images/w_home/Minimalist Terrazzo Bathroom with Wood Accents.png",
       "/images/w_home/Serene Modern Living Room with Aquarium.png",
+      "/images/w_home/Minimalist Living Room with Stone Media Wall.png",
       "/images/w_home/Warm Minimalist Kitchen with Natural Light.png",
       "/images/w_home/Kamar Tidur Mewah dengan Tirai Privasi Lembut.png",
-      "/images/w_home/Minimalist Living Room with Stone Media Wall.png",
+      "/images/w_home/Minimalist Terrazzo Bathroom with Wood Accents.png",
     ],
   },
   {
@@ -371,9 +371,9 @@ Satu hal yang paling signifikan dari rancangan rumah ini adalah ‘minim mainten
     gallery: [
       "/images/hj_res/00.png",
       "/images/hj_res/01.png",
-      "/images/hj_res/DINING.png",
       "/images/hj_res/GUEST.png",
       "/images/hj_res/LIVING.png",
+      "/images/hj_res/DINING.png",
     ],
   },
   {
