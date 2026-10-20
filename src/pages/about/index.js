@@ -28,18 +28,17 @@ export default function Studio() {
         <Box sx={{ maxWidth: 640 }}>
           <Typography sx={{ mb: 3 }}>
             ArchDo.studio adalah studio desain arsitektur dan interior yang
-            berbasis di Gading Serpong, Tangerang. Kami ingin menjadi partner
-            Anda dalam mewujudkan ruang impian, baik rumah untuk ditinggali,
-            tempat berkreasi dan berbisnis, maupun ruang lainnya.
+            berbasis di Tangerang. Kami ingin menjadi partner Anda dalam
+            mewujudkan ruang impian, baik rumah untuk ditinggali, tempat
+            berkreasi dan berbisnis, maupun ruang lainnya.
           </Typography>
-          <Typography sx={{ mb: 4 }}>
+          <Typography sx={{ mb: 3 }}>
             Kami menaruh perhatian lebih pada kebutuhan Anda, sehingga rancangan
-            yang dihasilkan fungsional, terasa personal, dan memenuhi
-            nilai-nilai estetika.
+            yang dihasilkan fungsional, personal, dan estetis.
           </Typography>
-          <Typography variant="caption" color="text.secondary">
+          {/* <Typography variant="caption" color="text.secondary">
             {disciplines.join("  /  ")}
-          </Typography>
+          </Typography> */}
         </Box>
       </Box>
 
